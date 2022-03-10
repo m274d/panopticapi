@@ -8,11 +8,12 @@ pip install git+https://github.com/cocodataset/panopticapi.git
 ## Fix multistream memory leak
 Reference: https://github.com/cocodataset/panopticapi/issues/27#issue-524338386
 
-`workers.close()`
+```python
+workers.close()
+workers.join()
+```
 
-`workers.join()`
-
-should be added right before the `return xxx` in method `combine_to_panoptic_multi_core` and `pq_compute_multi_core` for closing multiprocessing safely
+should be added right before the `return xxx` in method [combine_to_panoptic_multi_core](panopticapi/combine_semantic_and_instance_predictions.py) and [pq_compute_multi_core](panopticapi/evaluation.py) for closing multiprocessing safely
 
 
 ## Summary
